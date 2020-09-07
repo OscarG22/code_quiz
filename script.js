@@ -15,6 +15,26 @@
 //WHEN the game is over
 //THEN I can save my initials and score
 
+document.addEventListener('DOMContentLoaded', () => {
+    const timeLeftDisplay = document.querySelector("#time-left");
+    const startBtn = document.querySelector("#start-button");
+    let timeLeft = 30
+
+    function countDown() {
+        setInterval(function () {
+            if (timeLeft <= 0) {
+                clearInterval(timeLeft = 0)
+            }
+
+            timeLeftDisplay.innerHTML = timeLeft
+            timeLeft -= 1
+        }, 1000)
+    }
+
+    startBtn.addEventListener('click', countDown);
+
+})
+
 let questions = [
     {
         question: "What does HTML stand for?",
