@@ -15,25 +15,14 @@
 //WHEN the game is over
 //THEN I can save my initials and score
 
-document.addEventListener('DOMContentLoaded', () => {
-    const timeLeftDisplay = document.querySelector("#time-left");
-    const startBtn = document.querySelector("#start-button");
-    let timeLeft = 30
 
-    function countDown() {
-        setInterval(function () {
-            if (timeLeft <= 0) {
-                clearInterval(timeLeft = 0)
-            }
 
-            timeLeftDisplay.innerHTML = timeLeft
-            timeLeft -= 1
-        }, 1000)
-    }
-
-    startBtn.addEventListener('click', countDown);
-
-})
+//Variables
+const timeLeftDisplay = document.querySelector("#time-left");
+const startBtn = document.querySelector("#start-button");
+let timeLeft = 30
+const questionTitle = document.querySelector("#title")
+const answers = document.querySelector("#answers")
 
 let questions = [
     {
@@ -50,7 +39,7 @@ let questions = [
     {
         question: "What does CSS stand for?",
         correctAnswer: "Cascading Style Sheets",
-        AllAnswers: [
+        allAnswers: [
             "Centering Shouldn't Suck",
             "Cascading Style Sheets",
             "Complex Sites Simplified",
@@ -81,22 +70,40 @@ let questions = [
     },
 ]
 
+
 let currentQuestion = 0;
-let questionSpot = document.querySelector("#question");
-let answer1 = document.querySelector('.answer1');
-let answer2 = document.querySelector('.answer2');
-let answer3 = document.querySelector('.answer3');
-let answer4 = document.querySelector('.answer4');
+let questionSpot = document.querySelector("#questions");
+let answer1 = document.querySelector('#a');
+let answer2 = document.querySelector('#b');
+let answer3 = document.querySelector('#c');
+let answer4 = document.querySelector('#d');
+
+//Functions
+function countDown() {
+    setInterval(function () {
+        if (timeLeft <= 0) {
+            clearInterval(timeLeft = 0)
+        }
+
+        timeLeftDisplay.innerHTML = timeLeft
+        timeLeft -= 1
+    }, 1000)
+}
+function start() {
+
+}
 
 function fillOutDom() {
     questionSpot.textContent = questions[currentQuestion].question;
-    answer1.textContent = questions[currentQuestion].bogusAnswers[0];
-    answer2.textContent = questions[currentQuestion].bogusAnswers[1];
-    answer3.textContent = questions[currentQuestion].bogusAnswers[2];
-    answer4.textContent = questions[currentQuestion].correctAnswer;
+    answer1.textContent = questions[currentQuestion].allAnswers[0];
+    answer2.textContent = questions[currentQuestion].allAnswers[1];
+    answer3.textContent = questions[currentQuestion].allAnswers[2];
+    answer4.textContent = questions[currentQuestion].allAnswers[3];
 }
 
-fillOutDom();
+//Event listerners
+startBtn.addEventListener('click', countDown);
+
 document.addEventListener("click", function (event) {
     if (event.target.matches("button")) {
         if (event.target.textContent === questions[currentQuestion].correctAnswer) {
@@ -106,3 +113,13 @@ document.addEventListener("click", function (event) {
         fillOutDom();
     }
 })
+let current_Question = questions[0]
+//Entrypoint
+// console.log(current_Question.question);
+// console.log(current_Question.correctAnswer);
+// console.log(current_Question.allAnswers);
+
+// questionTitle.textContent = current_Question.question
+// let x = document.createElement("BUTTON");
+// x.innerHTML = current_Question.allAnswers[0]
+// answers.appendChild(x)
