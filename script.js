@@ -94,7 +94,7 @@ function start() {
 }
 
 function fillOutDom() {
-    questionSpot.textContent = questions[currentQuestion].question;
+    questionSpot.textContent = questions[currentQuestion].questions;
     answer1.textContent = questions[currentQuestion].allAnswers[0];
     answer2.textContent = questions[currentQuestion].allAnswers[1];
     answer3.textContent = questions[currentQuestion].allAnswers[2];
@@ -123,3 +123,23 @@ let current_Question = questions[0]
 // let x = document.createElement("BUTTON");
 // x.innerHTML = current_Question.allAnswers[0]
 // answers.appendChild(x)
+
+//function to save initials and score to local storage
+function initialsSave() {
+    const initials = document.querySelector("#initials");
+    let initializer = initials.value.trim();
+    if (initializer !== "") {
+        let highScores = JSON.parse(window.localStorage.getItem("high score") || "[]");
+
+        let newScore = {
+            score: secondsLeft,
+            initials: initializer,
+        }
+
+        highScores.push(newScore);
+        window.localStorage.setItem("high-scores", JSON.stringify(highScores));
+
+        window.location.href = "index.html";
+    }
+}
+//submit.onclick = initialsSave;
