@@ -1,31 +1,20 @@
-//GIVEN I am taking a code quiz
-
-//WHEN I click the start button
-//THEN a timer starts and I am presented with a question
-
-//WHEN I answer a question
-//THEN I am presented with another question
-
-//WHEN I answer a question incorrectly
-//THEN time is subtracted from the clock
-
-//WHEN all questions are answered or the timer reaches 0
-//THEN the game is over
-
-//WHEN the game is over
-//THEN I can save my initials and score
-
-
 
 //Variables
 const timeLeftDisplay = document.querySelector("#time-left");
 const startBtn = document.querySelector("#start-button");
-let timeLeft = 30
-const questionTitle = document.querySelector("#title")
-const answers = document.querySelector("#answers")
+let timeLeft = 30;
+const questionTitle = document.querySelector("#title");
+const answers = document.querySelector("#answers");
+let currentQuestion = 0;
+let questionSpot = document.querySelector("#questions");
+let answer1 = document.querySelector('#a');
+let answer2 = document.querySelector('#b');
+let answer3 = document.querySelector('#c');
+let answer4 = document.querySelector('#d');
 
 let questions = [
     {
+
         question: "What does HTML stand for?",
         correctAnswer: "Hypertext Markup Language",
         allAnswers: [
@@ -69,14 +58,6 @@ let questions = [
         ]
     },
 ]
-
-
-let currentQuestion = 0;
-let questionSpot = document.querySelector("#questions");
-let answer1 = document.querySelector('#a');
-let answer2 = document.querySelector('#b');
-let answer3 = document.querySelector('#c');
-let answer4 = document.querySelector('#d');
 
 //Functions
 function countDown() {
@@ -142,4 +123,4 @@ function initialsSave() {
         window.location.href = "index.html";
     }
 }
-//submit.onclick = initialsSave;
+// submit.onclick = initialsSave;
